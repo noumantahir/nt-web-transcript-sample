@@ -11,6 +11,13 @@ const appDirectory = path.resolve(__dirname, '../');
 
 const babelConfig = require('../babel.config');
 
+// const compileNodeModules = [
+//   // Add every react-native package that needs compiling
+//   // 'react-native-gesture-handler',
+//   'react-native-vector-icons', // ADD THIS LINE HERE
+// ].map((moduleName) => path.resolve(appDirectory, `node_modules/${moduleName}`));
+
+
 // Babel loader configuration
 const babelLoaderConfiguration = {
   test: /\.(tsx|jsx|ts|js)?$/,
@@ -21,6 +28,7 @@ const babelLoaderConfiguration = {
         path.resolve(appDirectory, 'node_modules'),
         path.resolve(appDirectory, 'ios'),
         path.resolve(appDirectory, 'android'),
+        // ...compileNodeModules
       ],
       // whitelisted modules to be transpiled by babel
       not: [],
@@ -63,7 +71,7 @@ const audioLoaderConfiguration = {
 
 // File loader configuration
 const fileLoaderConfiguration = {
-  test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+  test: /\.(woff(2)?|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
   use: [
     {
       loader: 'file-loader',
@@ -72,6 +80,14 @@ const fileLoaderConfiguration = {
         outputPath: 'fonts/',
       },
     },
+  ],
+};
+
+const ttfLoaderConfiguration = {
+  test: /\.ttf$/,
+  loader: 'url-loader', // or directly file-loader
+  include: [
+    path.resolve(appDirectory, 'node_modules/react-native-vector-icons'),
   ],
 };
 
@@ -103,6 +119,7 @@ module.exports = argv => {
         imageLoaderConfiguration,
         audioLoaderConfiguration,
         fileLoaderConfiguration,
+        ttfLoaderConfiguration
       ],
     },
     plugins: [
