@@ -4,20 +4,22 @@ import Icon from 'react-native-vector-icons/Entypo'; // Use your preferred icon 
 import styles from './IconButton.styles';
 
 interface Props {
-  iconName:string;
-  disabled?:boolean;
-  onPress:()=>void;
+  iconName: string;
+  disabled?: boolean;
+  size?: number;
+  color?: string;
+  onPress: () => void;
 }
 
 
-export const IconButton = ({iconName, disabled, onPress}:Props) => {
+export const IconButton = ({ iconName, disabled, size, color, onPress }: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
       disabled={disabled}
       style={styles.iconButton}
     >
-      <Icon name={iconName} size={32} color={'#000'} />
+      <Icon name={iconName} size={size || 24} color={color || '#000'} />
     </TouchableOpacity>
 
   )
