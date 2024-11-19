@@ -17,6 +17,7 @@ describe('convertMetaToInterleave', () => {
           phrases: [
             { words: 'this is one phrase.', time: 900 },
             { words: 'now the second phrase.', time: 900 },
+            { words: 'now the second phrase.', time: 900 },
           ],
         },
         {
@@ -36,6 +37,7 @@ describe('convertMetaToInterleave', () => {
       { speaker: 'Jack', message: 'another speaker here.', startTime: 1000, duration: 900 },
       { speaker: 'John', message: 'now the second phrase.', startTime: 2000, duration: 900 },
       { speaker: 'Jack', message: 'saying her second phrase.', startTime: 3000, duration: 900 },
+      { speaker: 'John', message: 'now the second phrase.', startTime: 4000, duration: 900 },
     ]);
   });
 
