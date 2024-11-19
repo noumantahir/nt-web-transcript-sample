@@ -1,4 +1,4 @@
-import { InterleavedItem, TranscriptMeta } from "./transcript.types";
+import { TranscriptEntry, TranscriptMeta } from "./transcript.types";
 
 
 export const convertMetaToInterleave = (rawData: TranscriptMeta) => {
@@ -10,7 +10,7 @@ export const convertMetaToInterleave = (rawData: TranscriptMeta) => {
     const { pause, speakers } = rawData;
 
     // Prepare arrays for each speaker's phrases
-    const speakerQueues = speakers.map(speaker =>
+    const speakerQueues = speakers.map(speaker => 
         speaker.phrases.map(phrase => ({
             speaker: speaker.name,
             message: phrase.words,
@@ -18,7 +18,7 @@ export const convertMetaToInterleave = (rawData: TranscriptMeta) => {
         }))
     );
 
-    const result: InterleavedItem[] = [];
+    const result: TranscriptEntry[] = [];
     let startTime = 0;
     let index = 0;
 

@@ -1,6 +1,6 @@
 
 
-export interface InterleavedItem {
+export interface TranscriptEntry {
     speaker: string;    // The name of the speaker
     message: string;    // The text of the message
     duration: number;   // Duration of the message (e.g., how long the message lasts)
