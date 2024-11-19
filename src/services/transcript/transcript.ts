@@ -1,6 +1,6 @@
 import rawTranscriptMeta from 'assets/metadata/transcript_meta.json';
 import { TranscriptMeta } from './transcript.types';
-import { convertMetaToInterleave } from './converters';
+import { parseInterleavedData } from './converters';
 
 export const parseInterleavedTranscript = async () => {
 
@@ -11,7 +11,7 @@ export const parseInterleavedTranscript = async () => {
             throw new Error("Failed to parse json file");
         }
 
-        const data = convertMetaToInterleave(rawData);
+        const data = parseInterleavedData(rawData);
 
         if(!data){
             throw new Error("Failed to convert meta to interleaved array")

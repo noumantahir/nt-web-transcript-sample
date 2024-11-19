@@ -1,11 +1,11 @@
-import { convertMetaToInterleave } from "services/transcript/converters";
+import { parseInterleavedData } from "services/transcript/converters";
 import { TranscriptMeta } from "services/transcript/transcript.types";
 
 
 describe('convertMetaToInterleave', () => {
   it('should throw an error if rawData is null or undefined', () => {
-    expect(() => convertMetaToInterleave (null as unknown as TranscriptMeta)).toThrow('Invalid data');
-    expect(() => convertMetaToInterleave(undefined as unknown as TranscriptMeta)).toThrow('Invalid data');
+    expect(() => parseInterleavedData (null as unknown as TranscriptMeta)).toThrow('Invalid data');
+    expect(() => parseInterleavedData(undefined as unknown as TranscriptMeta)).toThrow('Invalid data');
   });
 
   it('should interleave phrases and calculate correct times', () => {
@@ -30,7 +30,7 @@ describe('convertMetaToInterleave', () => {
       ],
     };
 
-    const result = convertMetaToInterleave(rawData);
+    const result = parseInterleavedData(rawData);
 
     expect(result).toEqual([
       { speaker: 'John', message: 'this is one phrase.', startTime: 0, duration: 900 },
@@ -50,7 +50,7 @@ describe('convertMetaToInterleave', () => {
       ],
     };
 
-    const result = convertMetaToInterleave(rawData);
+    const result = parseInterleavedData(rawData);
 
     expect(result).toEqual([]);
   });
@@ -69,7 +69,7 @@ describe('convertMetaToInterleave', () => {
       ],
     };
 
-    const result = convertMetaToInterleave(rawData);
+    const result = parseInterleavedData(rawData);
 
     expect(result).toEqual([
       { speaker: 'John', message: 'hello', startTime: 0, duration: 1000 },
@@ -83,7 +83,7 @@ describe('convertMetaToInterleave', () => {
       speakers: [],
     };
 
-    const result = convertMetaToInterleave(rawData);
+    const result = parseInterleavedData(rawData);
 
     expect(result).toEqual([]);
   });

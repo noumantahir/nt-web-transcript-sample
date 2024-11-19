@@ -13,7 +13,7 @@ import { TranscriptEntry, TranscriptMeta } from "./transcript.types";
  * @returns TranscriptEntry[] - An array of interleaved transcript entries.
  * @throws Error if rawData is invalid.
  */
-export const convertMetaToInterleave = (rawData: TranscriptMeta) => {
+export const parseInterleavedData = (rawData: TranscriptMeta) => {
 
     if (!rawData) {
         throw new Error("Invalid data");
@@ -35,7 +35,7 @@ export const convertMetaToInterleave = (rawData: TranscriptMeta) => {
     for (let index = 0; index < maxPhrases; index++) {
         //tap each phrase sequencially
         speakers.forEach((speaker) => {
-            
+
             //check if phrase exist for speaker in queue
             const phrase = speaker.phrases[index];
             if (phrase) {
