@@ -49,6 +49,18 @@ const imageLoaderConfiguration = {
   },
 };
 
+const audioLoaderConfiguration = {
+  test: /\.(mp3|wav)$/,
+  use: {
+    loader: 'url-loader',
+    options: {
+      name: '[name].[ext]',
+      esModule: false,
+      // outputPath: path.resolve(appDirectory, 'src/assets/audio'),
+    },
+  },
+}
+
 // File loader configuration
 const fileLoaderConfiguration = {
   test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -89,6 +101,7 @@ module.exports = argv => {
       rules: [
         babelLoaderConfiguration,
         imageLoaderConfiguration,
+        audioLoaderConfiguration,
         fileLoaderConfiguration,
       ],
     },
