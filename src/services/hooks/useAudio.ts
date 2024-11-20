@@ -1,83 +1,82 @@
-import { useState, useEffect, useRef } from 'react';
-import Sound from 'react-native-sound';
+import { useEffect, useState, useRef } from 'react';
+import SoundPlayer from 'react-native-sound-player';
 
-Sound.setCategory('Playback'); // Required for iOS playback
+export const useAudio = (asset: number) => {
 
+    const progressPollRef = useRef<NodeJS.Timeout | null>(null);
 
-export const useAudio = (src: string) => {
-
-    const [playing, setPlaying] = useState(false);
     const [isReady, setIsReady] = useState(false);
+    const [playing, setPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    const audio = useRef<Sound | null>(new Sound(src));
-    const intervalRef = useRef<NodeJS.Timeout | null>();
-
-
+    //load asset on launch
     useEffect(() => {
+        loadAudio();
+    }, []);
 
-        if (audio.current?.isLoaded) {
 
-            setDuration(audio.current.getDuration() * 1000);
+    //update current progress time every x milliseconds
+    //also makes sure interval is only set while audio is being played
+    useEffect(() => {
+        if (playing) {
+            progressPollRef.current = setInterval(async () => {
+                const info = await SoundPlayer.getInfo();
+                setCurrentTime(info.currentTime * 1000)
+                console.log('audio info', info)
+            }, 100)
+        } else {
+            _clearProgressPoll()
+        }
+        return _clearProgressPoll
+    }, [playing])
+
+
+
+    // Load the audio file when the component mounts
+    const loadAudio = async () => {
+        try {
+            // Load the local audio file
+            SoundPlayer.loadAsset(asset);
+
+            const info = await SoundPlayer.getInfo();
+            setDuration(info.duration);
             setIsReady(true);
-
-            // Listen for current time updates
-            intervalRef.current = setInterval(() => {
-                if (audio.current) {
-                    audio.current.getCurrentTime((time) => {
-                        setCurrentTime(time * 1000);  // Update current time
-                    });
-                }
-            }, 50);
+        } catch (error) {
+            console.error('Error loading sound:', error);
+            setIsReady(false);
         }
-
-        return _cleanup;
-
-    }, [src, audio.current?.isLoaded]);
+    };
 
 
-    // Cleanup: remove the interval and audio instance on unmount
-    const _cleanup = () => {
-        if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-        }
-
-        if (audio.current) {
-            audio.current.release();  // Free up the audio resources
+    //clear interval when needed
+    const _clearProgressPoll = () => {
+        if (progressPollRef.current) {
+            clearInterval(progressPollRef.current)
+            progressPollRef.current = null
         }
     }
 
 
-    // Toggle play/pause state
+    // Toggle play/pause
     const _toggle = () => {
-        if (audio.current) {
-            if (playing) {
-                audio.current.pause();
-            } else {
-                audio.current.play((success) => {
-                    if (!success) {
-                        console.log('Playback failed');
-                    }
-                });
-            }
-            setPlaying(!playing);
+        if (playing) {
+            SoundPlayer.pause();
+            setPlaying(false);
+        } else {
+            SoundPlayer.play();
+            setPlaying(true);
         }
     };
 
 
     // Seek to a specific time
-    const _seek = (millis: number) => {
-        if (audio.current) {
-            audio.current.setCurrentTime(millis / 1000);  // Set the audio to the desired position
-            setCurrentTime(millis / 1000);
-        }
+    const _seek = (timeMillis: number) => {
+        SoundPlayer.seek(timeMillis / 1000);
+        setCurrentTime(timeMillis / 1000);
     };
 
 
-
-    // Return the necessary states and methods
     return {
         isReady,
         playing,
@@ -86,5 +85,5 @@ export const useAudio = (src: string) => {
         seek: _seek,
         toggle: _toggle,
     };
+};
 
-}
