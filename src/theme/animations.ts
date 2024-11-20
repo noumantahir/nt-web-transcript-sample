@@ -13,5 +13,9 @@ export const Animations = ({
         ),
         -1, // Infinite repeats
         false // No reverse
-    )
+    ),
+    quickSelection:withSequence(
+        withTiming(1.03, { duration: 100, easing: Easing.ease }), // Scale up
+        withTiming(1, { duration: 200, easing: Easing.ease })   // Scale down
+      )
 });
