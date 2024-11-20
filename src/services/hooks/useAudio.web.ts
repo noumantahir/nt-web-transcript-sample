@@ -21,7 +21,7 @@ export const useAudio = (src: string | string[]) => {
         });
 
         audio.addEventListener('timeupdate', () => {
-            setCurrentTime(Math.round(audio.currentTime * 1000) / 1000);
+            setCurrentTime(audio.currentTime * 1000);
         })
 
         return () => {
@@ -32,8 +32,9 @@ export const useAudio = (src: string | string[]) => {
     }, []);
 
     const _seek = (timeMillis: number) => {
-        if (timeMillis < audio.duration) {
-            audio.currentTime = timeMillis;
+        const timeSec = timeMillis * 1000
+        if (timeSec < audio.duration) {
+            audio.currentTime = timeSec / 100;
         }
     }
 
@@ -41,7 +42,7 @@ export const useAudio = (src: string | string[]) => {
         isReady,
         playing,
         currentTime: currentTime,
-        duration: audio.duration,
+        duration: audio.duration * 1000,
         seek: _seek,
         toggle: _toggle
     };
