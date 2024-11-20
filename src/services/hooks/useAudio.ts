@@ -40,7 +40,7 @@ export const useAudio = (asset: number) => {
             SoundPlayer.loadAsset(asset);
 
             const info = await SoundPlayer.getInfo();
-            setDuration(info.duration);
+            setDuration(info.duration * 1000);
             setIsReady(true);
         } catch (error) {
             console.error('Error loading sound:', error);
