@@ -19,4 +19,7 @@ export default StyleSheet.create({
       borderRadius: 8,
       marginBottom: 8,
     },
+    activeBubble:{
+      backgroundColor: '#8794FF33',
+    }
   });

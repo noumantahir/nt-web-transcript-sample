@@ -7,10 +7,10 @@ import { Text, TextPresets } from 'components/atoms'
 interface Props {
   data: TranscriptEntry,
   index: number,
-  curTime: number
+  activeIndex: number
 }
 
-export const TranscriptItem = ({ data, index, curTime }: Props) => {
+export const TranscriptItem = ({ data, index, activeIndex }: Props) => {
 
   const isEven = index % 2 === 0;
 
@@ -18,7 +18,7 @@ export const TranscriptItem = ({ data, index, curTime }: Props) => {
     <View style={[styles.container, isEven ? styles.alignLeft : styles.alignRight]}>
       <Text preset={TextPresets.LABEL}>{data.speaker}</Text>
  
-      <View style={styles.chatBubble}>
+      <View style={[styles.chatBubble, activeIndex == index && styles.activeBubble]}>
         <Text preset={TextPresets.BODY}>{data.message}</Text>
       </View>
     </View>
