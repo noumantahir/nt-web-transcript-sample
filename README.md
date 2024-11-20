@@ -26,10 +26,13 @@ This is a simple React Native application designed to serve as a basic audio tra
 ### Video Demo
 
 Mobile Demo
-https://github.com/user-attachments/assets/dca8d563-cf5a-4cd5-ade2-a91141499030
+https://github.com/user-attachments/assets/adfb337f-1ba4-4472-931d-730579744366
+
 
 Web Demo
-https://github.com/user-attachments/assets/963001c0-5aeb-4fc8-85b7-1b1eb1395aff
+https://github.com/user-attachments/assets/02ef946e-2681-4936-b707-c896c8ef286e
+
+
 
 # Getting Started
 
