@@ -9,8 +9,10 @@ module.exports = {
         components: "./src/components",
         screens: "./src/screens",
         services: "./src/services",
-        theme:"./src/theme"
+        theme: "./src/theme"
       }
     }
-  ]]
+  ],
+    '@babel/plugin-proposal-export-namespace-from',
+    'react-native-reanimated/plugin']
 };
