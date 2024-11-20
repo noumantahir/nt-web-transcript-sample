@@ -1,5 +1,5 @@
 import { Platform, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/Entypo';
 import styles from './IconButton.styles';
 import { Colors } from 'theme';
@@ -20,11 +20,13 @@ export const IconButton = ({ iconName, disabled, size, color, animateWithDelay, 
   const [visible, setVisible] = useState(!isWeb || !animateWithDelay);
 
   //handles web delayed animation glitch issue
-  if (isWeb && animateWithDelay) {
-    setTimeout(() => {
-      setVisible(true);
-    }, animateWithDelay + 20) //extra delay to avoid momentary glitch
-  }
+  useEffect(() => {
+    if (isWeb && animateWithDelay) {
+      setTimeout(() => {
+        setVisible(true);
+      }, animateWithDelay + 20) //extra delay to avoid momentary glitch
+    }
+  }, [])
 
   //animate if animateWithDelay is passed, else render default
   const animation = animateWithDelay !== undefined

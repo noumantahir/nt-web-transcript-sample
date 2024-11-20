@@ -35,11 +35,13 @@ export const TranscriptItem = ({ data, index, activeIndex, onPress }: Props) => 
 
   const _animDelay = index * 150
   //handles delay animation glitch on web
-  if (isWeb) {
-    setTimeout(() => {
-      setVisible(true);
-    }, _animDelay + 20); // extra delay to avoid momentary glitch on web
-  }
+  useEffect(() => {
+    if (isWeb) {
+      setTimeout(() => {
+        setVisible(true);
+      }, _animDelay + 20); // extra delay to avoid momentary glitch on web
+    }
+  }, [])
 
 
   //trigger animation on tile becomes active
