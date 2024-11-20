@@ -1,9 +1,9 @@
 import { Platform, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import Icon from 'react-native-vector-icons/Entypo'; 
+import Icon from 'react-native-vector-icons/Entypo';
 import styles from './IconButton.styles';
 import { Colors } from 'theme';
-import Animated, { BounceIn } from 'react-native-reanimated';
+import Animated, { BounceIn, useAnimatedStyle } from 'react-native-reanimated';
 interface Props {
   iconName: string;
   disabled?: boolean;
@@ -26,21 +26,24 @@ export const IconButton = ({ iconName, disabled, size, color, animateWithDelay, 
     }, animateWithDelay + 20) //extra delay to avoid momentary glitch
   }
 
+  //animate if animateWithDelay is passed, else render default
   const animation = animateWithDelay !== undefined
     ? BounceIn.delay(animateWithDelay)
     : undefined;
 
-  const _wrapperStyle = {
-    ...styles.iconButton, 
-    opacity: visible ? 1 : 0 
-  }
+
+  // wrapping style around reanimated helps avoid 
+  //manual style manipulation warning
+  const _wrapperStyle = useAnimatedStyle(() => ({
+    opacity: visible ? 1 : 0, // manipulate opacity
+  }));
 
   return (
-    <Animated.View entering={animation}>
+    <Animated.View entering={animation} style={_wrapperStyle}>
       <TouchableOpacity
         onPress={onPress}
         disabled={disabled}
-        style={_wrapperStyle}
+        style={styles.iconButton}
       >
         <Icon name={iconName} size={size || 24} color={color || Colors.textBlack} />
       </TouchableOpacity>
