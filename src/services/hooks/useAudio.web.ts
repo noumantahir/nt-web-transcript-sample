@@ -4,9 +4,15 @@ export const useAudio = (src: string | string[]) => {
     const [audio] = useState(new Audio(src));
     const [playing, setPlaying] = useState(false);
     const [isReady, setIsReady] = useState(false);
+    const [isEnded, setIsEnded] = useState(true);
     const [currentTime, setCurrentTime] = useState(0);
 
-    const _toggle = () => setPlaying(!playing);
+    const _toggle = () => {
+        setPlaying(!playing);
+        if(isEnded){
+            setIsEnded(false);
+        }
+    }
 
     useEffect(() => {
         playing ? audio.play() : audio.pause();
@@ -15,9 +21,13 @@ export const useAudio = (src: string | string[]) => {
     );
 
     useEffect(() => {
-        audio.addEventListener('ended', () => setPlaying(false));
+        audio.addEventListener('ended', () => {
+            setPlaying(false);
+            setIsEnded(true);
+        });
         audio.addEventListener("canplaythrough", () => {
             setIsReady(true);
+         
         });
 
         audio.addEventListener('timeupdate', () => {
