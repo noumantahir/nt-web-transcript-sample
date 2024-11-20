@@ -34,13 +34,6 @@ export const ControlPanel = ({
     paddingBottom: insets.bottom > 0 ? insets.bottom : 18, //makes sure bottom spacing is consistent
   }
 
-
-  const _renderAnimatedIcon = (iconName: string, animDelay: number, onPress: () => void,) => {
-    <Animated.View entering={BounceIn.delay(animDelay)} >
-      <IconButton iconName='controller-fast-backward' onPress={onPrevious} />
-    </Animated.View>
-  }
-
   return (
     <View style={_containerStyle}>
       <ProgressBar maxProgress={duration} progress={currentTime} />
