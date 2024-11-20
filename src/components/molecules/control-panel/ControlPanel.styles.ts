@@ -7,7 +7,9 @@ export default StyleSheet.create({
       alignItems: 'center', 
       borderTopWidth:1,
       backgroundColor:Colors.background,
-      borderColor: Colors.border,    
+      borderColor: Colors.border,   
+      borderBottomLeftRadius:16,
+      borderBottomRightRadius:16,
     },
     controlPanel: {
       flexDirection: 'row',

@@ -4,6 +4,7 @@ import React from 'react';
 import { View } from 'react-native';
 import styles from './ControlPanel.styles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { TimeTracker } from './children';
 
 interface Props {
   isPlaying: boolean;
@@ -33,9 +34,11 @@ export const ControlPanel = ({
     paddingBottom: insets.bottom > 0 ? insets.bottom : 18, //makes sure bottom spacing is consistent
   }
 
+
   return (
     <View style={_containerStyle}>
       <ProgressBar maxProgress={duration} progress={currentTime} />
+      <TimeTracker elapsed={currentTime} total={duration} />
       <View style={styles.controlPanel}>
         <IconButton iconName='controller-fast-backward' onPress={onPrevious} />
         <PlayButton isPlaying={isPlaying} isDisabled={isDisabled} onPress={onTogglePlayback} />
