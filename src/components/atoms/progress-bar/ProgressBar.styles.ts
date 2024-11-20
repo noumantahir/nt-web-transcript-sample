@@ -11,6 +11,7 @@ export default StyleSheet.create({
     fillBar: {
         height: '100%',
         backgroundColor:Colors.accent,
+        opacity: 0.65,
         borderTopRightRadius:4,
         borderBottomRightRadius:4
     },
