@@ -19,17 +19,17 @@ export const useAudio = (src: string) => {
 
         if (audio.current?.isLoaded) {
 
-            setDuration(audio.current.getDuration());
+            setDuration(audio.current.getDuration() * 1000);
             setIsReady(true);
 
             // Listen for current time updates
             intervalRef.current = setInterval(() => {
                 if (audio.current) {
                     audio.current.getCurrentTime((time) => {
-                        setCurrentTime(time);  // Update current time
+                        setCurrentTime(time * 1000);  // Update current time
                     });
                 }
-            }, 100);
+            }, 50);
         }
 
         return _cleanup;
@@ -68,10 +68,10 @@ export const useAudio = (src: string) => {
 
 
     // Seek to a specific time
-    const _seek = (seconds: number) => {
+    const _seek = (millis: number) => {
         if (audio.current) {
-            audio.current.setCurrentTime(seconds);  // Set the audio to the desired position
-            setCurrentTime(seconds);
+            audio.current.setCurrentTime(millis / 1000);  // Set the audio to the desired position
+            setCurrentTime(millis / 1000);
         }
     };
 
