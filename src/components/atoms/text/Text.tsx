@@ -12,7 +12,7 @@ export enum TextPresets {
 
 interface Props extends TextProps {
   preset?: TextPresets;
-  style?: TextStyle;
+  style?: TextStyle|TextStyle[];
 }
 
 // Text Component
