@@ -1,4 +1,8 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Sample React Native Audio Transcriber App
+
+The app is part of an assessment process and should not be considered a final product.
+
+This is a simple React Native application designed to serve as a basic audio transcriber. The app accepts uses language audio and transcript metadata as inputs, plays the audio, and highlights the corresponding spoken phrases in real-time. The goal is to create an interactive experience where users can listen to the audio while the spoken phrases are visually emphasized on the screen.
 
 # Getting Started
 
@@ -46,34 +50,38 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Step 3: Modifying your App
+### Build for Web
 
-Now that you have successfully run the app, let's modify it.
+To build and run the app for the web, follow the instructions below:
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### 1. Install Webpack
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+Before you can build the app for the web, you need to install **Webpack** and its dependencies.
 
-## Congratulations! :tada:
+Run the following command to install Webpack using Yarn:
 
-You've successfully run and modified your React Native App. :partying_face:
+```bash
+# Using Yarn
+yarn add webpack webpack-cli webpack-dev-server --dev
+```
 
-### Now what?
+### 2. Run Web Version
+Once Webpack is installed, you can start the app on the web by running:
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+```bash
 
-# Troubleshooting
+# Using Yarn
+yarn web
+```
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+This will launch the app in your default browser. The application will be live at http://localhost:8080 by default.
 
-# Learn More
+### 3. Build for Production
+To package your app for production, use the following command to create an optimized build:
 
-To learn more about React Native, take a look at the following resources:
+```bash
+# Using Yarn
+yarn web:build
+```
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This will generate a production-ready build of your app and output it in the build/ directory. You can then deploy this build to your web server or hosting service.
