@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { SafeAreaView, FlatList, useWindowDimensions, View } from 'react-native';
+import { FlatList, useWindowDimensions, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useAudio } from 'services/hooks';
 import { parseInterleavedTranscript } from 'services/transcript';
 import { TranscriptEntry } from 'services/transcript/transcript.types';
@@ -92,19 +93,25 @@ export const TranscriptScreen = () => {
 
   // Check if width is greater than 700
   const isWideScreen = dims.width > CONTENT_WIDTH_THRESHOLD;
-  console.log(dims)
+
+
+  const _containerStyle = [
+    styles.container,
+    [isWideScreen && styles.wideContainer]
+  ]
+
+  const _contentStyle = [
+    styles.content,
+    [isWideScreen && styles.wideContent]
+  ]
 
   return (
+    <SafeAreaView
+      style={_containerStyle}
+      edges={['right', 'top', 'left']}>
 
-    <SafeAreaView style={[
-      styles.container,
-      [isWideScreen && styles.wideContainer]
-    ]}>
-      <View style={[
-        styles.content,
-        [isWideScreen && styles.wideContent]
-      ]}>
-        <Header title='Interleaved Transcript' />
+      <View style={_contentStyle}>
+        <Header />
 
         <FlatList
           data={interleaved}
