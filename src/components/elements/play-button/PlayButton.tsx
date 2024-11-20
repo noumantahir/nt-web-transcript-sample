@@ -17,7 +17,7 @@ export const PlayButton = ({ isDisabled, isPlaying, onPress }: Props) => {
 
   // Start the pulse animation
   useEffect(() => {
-    pulse.value = Animations.pulseAnimation;
+    pulse.value = Animations.pulsating;
   }, []);
 
   // Animated style

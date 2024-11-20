@@ -2,7 +2,7 @@
 import { withSequence, withRepeat, withTiming, Easing, withDelay } from 'react-native-reanimated';
 
 export const Animations = ({
-    pulseAnimation: withRepeat(
+    pulsating: withRepeat(
         withDelay(800,
             withSequence(
                 withTiming(1.3, { duration: 200, easing: Easing.ease }), // Quick scale up
