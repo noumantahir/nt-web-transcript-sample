@@ -3,6 +3,7 @@ import { PlayButton } from 'components/elements';
 import React from 'react';
 import { View } from 'react-native';
 import styles from './ControlPanel.styles';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface Props {
   isPlaying: boolean;
@@ -20,8 +21,16 @@ export const ControlPanel = ({
   isDisabled
 }: Props) => {
 
+  const insets = useSafeAreaInsets();
+
+
+  const _containerStyle = {
+    ...styles.container,
+    paddingBottom:insets.bottom > 0 ? insets.bottom : 18, //makes sure bottom spacing is consistent
+  }
+
   return (
-    <View style={styles.container}>
+    <View style={_containerStyle}>
       <View style={styles.controlPanel}>
         <IconButton iconName='controller-fast-backward' onPress={onPrevious} />
         <PlayButton isPlaying={isPlaying} isDisabled={isDisabled} onPress={onTogglePlayback} />
