@@ -8,7 +8,6 @@ import { TranscriptItem } from '../children';
 import { ControlPanel } from 'components/molecules';
 import { Header } from 'components/elements';
 import styles, { CONTENT_WIDTH_THRESHOLD } from '../styles/TranscriptScreen.styles'
-import { ProgressBar } from 'components/atoms';
 
 
 const SWICTH_BUFFER_MS = 700; //Buffer to decide whether jump to previous phrase or replay current phrase
@@ -121,14 +120,15 @@ export const TranscriptScreen = () => {
           contentContainerStyle={styles.listContent}
           extraData={player.currentTime}
         />
-
-        <ProgressBar maxProgress={player.duration} progress={player.currentTime} />
+        
         <ControlPanel
           onTogglePlayback={_onTogglePlayback}
           onNext={_onNext}
           onPrevious={_onPrevious}
           isPlaying={player.playing}
           isDisabled={!player.isReady}
+          duration={player.duration}
+          currentTime={player.currentTime}
         />
 
 
