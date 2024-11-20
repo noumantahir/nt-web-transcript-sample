@@ -10,7 +10,7 @@ interface Props {
   data: TranscriptEntry,
   index: number,
   activeIndex: number,
-  onPress: (index:number) => void,
+  onPress: (index: number) => void,
 }
 
 export const TranscriptItem = ({ data, index, activeIndex, onPress }: Props) => {
@@ -64,11 +64,11 @@ export const TranscriptItem = ({ data, index, activeIndex, onPress }: Props) => 
     <Animated.View entering={FadeInDown.delay(_animDelay)} style={_containerStyle}>
       <Text preset={TextPresets.LABEL} style={_textStyle}>{data.speaker}</Text>
 
-      <Pressable onPress={_onPress}>
-        <Animated.View style={[_bubbleStyle, animatedBubbleStyle]}>
+      <Animated.View style={[_bubbleStyle, animatedBubbleStyle]}>
+        <Pressable onPress={_onPress}>
           <Text preset={TextPresets.BODY} style={_textStyle}>{data.message}</Text>
-        </Animated.View>
-      </Pressable>
+        </Pressable>
+      </Animated.View>
 
     </Animated.View >
   )
