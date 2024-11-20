@@ -1,4 +1,4 @@
-import { Platform } from 'react-native'
+import { Platform, Pressable } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { TranscriptEntry } from 'services/transcript/transcript.types'
 import styles from '../styles/TranscriptItem.styles'
@@ -9,10 +9,11 @@ import { Animations } from 'theme'
 interface Props {
   data: TranscriptEntry,
   index: number,
-  activeIndex: number
+  activeIndex: number,
+  onPress: (index:number) => void,
 }
 
-export const TranscriptItem = ({ data, index, activeIndex }: Props) => {
+export const TranscriptItem = ({ data, index, activeIndex, onPress }: Props) => {
 
   const isWeb = Platform.OS === 'web';
   const [visible, setVisible] = useState(!isWeb);
@@ -20,7 +21,6 @@ export const TranscriptItem = ({ data, index, activeIndex }: Props) => {
 
   const isEven = index % 2 === 0;
   const isActive = activeIndex == index
-
 
 
   //compile dynamic styles
@@ -55,13 +55,20 @@ export const TranscriptItem = ({ data, index, activeIndex }: Props) => {
   }));
 
 
+  const _onPress = () => {
+    onPress(index)
+  }
+
+
   return (
     <Animated.View entering={FadeInDown.delay(_animDelay)} style={_containerStyle}>
       <Text preset={TextPresets.LABEL} style={_textStyle}>{data.speaker}</Text>
 
-      <Animated.View style={[_bubbleStyle, animatedBubbleStyle]}>
-        <Text preset={TextPresets.BODY} style={_textStyle}>{data.message}</Text>
-      </Animated.View>
+      <Pressable onPress={_onPress}>
+        <Animated.View style={[_bubbleStyle, animatedBubbleStyle]}>
+          <Text preset={TextPresets.BODY} style={_textStyle}>{data.message}</Text>
+        </Animated.View>
+      </Pressable>
 
     </Animated.View >
   )
