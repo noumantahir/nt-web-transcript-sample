@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
       justifyContent: 'flex-end', 
-      alignItems: 'center',      
-      backgroundColor: '#f9f9f9', 
+      alignItems: 'center', 
       borderTopWidth:1,
       borderColor: '#ddd',        
     },
@@ -12,7 +11,7 @@ export default StyleSheet.create({
       flexDirection: 'row',
       alignItems:'center',
       justifyContent: 'space-around', 
-      paddingTop: 16,        
+      paddingVertical: 16,        
       backgroundColor: '#fff',    
     },
   
