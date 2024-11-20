@@ -1,10 +1,12 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "theme";
 
 export const CONTENT_WIDTH_THRESHOLD = 700
 
 export default StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor:Colors.backgroundScreen
     },
     wideContainer:{
       alignItems:'center'
@@ -21,6 +23,7 @@ export default StyleSheet.create({
     },
     listContent: {
       flex: 1,
+      backgroundColor:Colors.background,
       padding: 16,
       maxWidth: 700,
     }

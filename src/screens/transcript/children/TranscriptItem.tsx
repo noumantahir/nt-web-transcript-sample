@@ -13,13 +13,17 @@ interface Props {
 export const TranscriptItem = ({ data, index, activeIndex }: Props) => {
 
   const isEven = index % 2 === 0;
+  const isActive = activeIndex == index
+
+  const _containerStyle = [styles.container, isEven ? styles.alignLeft : styles.alignRight];
+  const _textStyle = isActive ? styles.activeTextStyle : undefined;
+  const _bubbleStyle = [styles.chatBubble, isActive && styles.activeBubble];
 
   return (
-    <View style={[styles.container, isEven ? styles.alignLeft : styles.alignRight]}>
-      <Text preset={TextPresets.LABEL}>{data.speaker}</Text>
- 
-      <View style={[styles.chatBubble, activeIndex == index && styles.activeBubble]}>
-        <Text preset={TextPresets.BODY}>{data.message}</Text>
+    <View style={_containerStyle}>
+      <Text preset={TextPresets.LABEL} style={_textStyle}>{data.speaker}</Text>
+      <View style={_bubbleStyle}>
+        <Text preset={TextPresets.BODY} style={_textStyle}>{data.message}</Text>
       </View>
     </View>
   )

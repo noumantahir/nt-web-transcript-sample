@@ -10,6 +10,7 @@
       "components/*": ["src/components/*"],
       "screens/*": ["src/screens/*"],
       "services/*": ["src/services/*"],
+      "theme/*": ["src/theme/*"],
   
     }
   }

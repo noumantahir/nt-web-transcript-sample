@@ -8,7 +8,8 @@ module.exports = {
         assets: "./src/assets",
         components: "./src/components",
         screens: "./src/screens",
-        services: "./src/services"
+        services: "./src/services",
+        theme:"./src/theme"
       }
     }
   ]]

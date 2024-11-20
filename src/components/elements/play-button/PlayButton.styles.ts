@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "theme";
 
 export default StyleSheet.create({
     wrapper:{
-        backgroundColor:'#8794FF33',
-        borderRadius:16,
-        marginHorizontal:16,
-        padding:2, 
+        backgroundColor:Colors.primaryLight,
+        borderRadius:10,
+        marginHorizontal:24,
     }
 })
