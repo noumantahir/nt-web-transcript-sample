@@ -15,6 +15,7 @@ This is a simple React Native application designed to serve as a basic audio tra
 
 **Extra Features**
 - Phrase item playbacks by tapping on them
+- Scroll to phrase being played if not already on screen
 - smooth animations -- `entry phrases`, `entry panel`, `phrase switch`, `play button`
 
 ### Screenshots
