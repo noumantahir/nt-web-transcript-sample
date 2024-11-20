@@ -16,6 +16,7 @@ export default StyleSheet.create({
     chatBubble: {
       backgroundColor: Colors.backgroundWhite,
       width: '100%',
+      maxWidth: 400,
       borderColor:Colors.border,
       marginTop:6,
       borderWidth:1,
