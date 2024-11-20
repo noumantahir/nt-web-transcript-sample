@@ -89,7 +89,7 @@ export const TranscriptScreen = () => {
 
 
   const renderItem = ({ item, index }: { item: TranscriptEntry, index: number }) =>
-    <TranscriptItem data={item} index={index} activeIndex={activeIndex} />;
+    <TranscriptItem data={item} index={index} activeIndex={activeIndex} onPress={_seek} />;
 
   // Check if width is greater than 700
   const isWideScreen = dims.width > CONTENT_WIDTH_THRESHOLD;
