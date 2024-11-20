@@ -33,11 +33,11 @@ describe('convertMetaToInterleave', () => {
     const result = parseInterleavedData(rawData);
 
     expect(result).toEqual([
-      { speaker: 'John', message: 'this is one phrase.', startTime: 0, duration: 900 },
-      { speaker: 'Jack', message: 'another speaker here.', startTime: 1000, duration: 900 },
-      { speaker: 'John', message: 'now the second phrase.', startTime: 2000, duration: 900 },
-      { speaker: 'Jack', message: 'saying her second phrase.', startTime: 3000, duration: 900 },
-      { speaker: 'John', message: 'now the second phrase.', startTime: 4000, duration: 900 },
+      { speaker: 'John', message: 'this is one phrase.', startTime: 0, duration: 900, endTime: 900 },
+      { speaker: 'Jack', message: 'another speaker here.', startTime: 1000, duration: 900, endTime: 1900 },
+      { speaker: 'John', message: 'now the second phrase.', startTime: 2000, duration: 900, endTime: 2900 },
+      { speaker: 'Jack', message: 'saying her second phrase.', startTime: 3000, duration: 900, endTime: 3900 },
+      { speaker: 'John', message: 'now the second phrase.', startTime: 4000, duration: 900, endTime: 4900 },
     ]);
   });
 
@@ -72,8 +72,8 @@ describe('convertMetaToInterleave', () => {
     const result = parseInterleavedData(rawData);
 
     expect(result).toEqual([
-      { speaker: 'John', message: 'hello', startTime: 0, duration: 1000 },
-      { speaker: 'John', message: 'world', startTime: 1100, duration: 2000 },
+      { speaker: 'John', message: 'hello', startTime: 0, duration: 1000, endTime: 1000 },
+      { speaker: 'John', message: 'world', startTime: 1100, duration: 2000, endTime: 3100 },
     ]);
   });
 

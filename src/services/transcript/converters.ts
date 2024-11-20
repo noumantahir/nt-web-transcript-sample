@@ -44,7 +44,7 @@ export const parseInterleavedData = (rawData: TranscriptMeta) => {
                 //skips this step for first phrase, since it always starts at 0
                 if (result.length > 0) {
                     const previousItem = result[result.length - 1];
-                    startTime = previousItem.startTime + previousItem.duration + pause;
+                    startTime = previousItem.endTime + pause;
                 }
 
                 //convert to porcessable array item and push to returning array
@@ -52,7 +52,8 @@ export const parseInterleavedData = (rawData: TranscriptMeta) => {
                     speaker: speaker.name,
                     message: phrase.words,
                     startTime: startTime,
-                    duration: phrase?.time
+                    duration: phrase.time,
+                    endTime: startTime + phrase.time,
                 });
             }
         })

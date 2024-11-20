@@ -5,6 +5,7 @@ export interface TranscriptEntry {
     message: string;    // The text of the message
     duration: number;   // Duration of the message (e.g., how long the message lasts)
     startTime: number;  // Start time of the message (timestamp)
+    endTime: number; // End time of the message (timestamp)
 }
 
 
