@@ -16,7 +16,7 @@ export default StyleSheet.create({
     },
     wideContent: {
       width:CONTENT_WIDTH_THRESHOLD,
-      margin:56,
+      margin: 24,
       borderRadius: 16, 
       shadowOpacity: 0.2, 
       shadowRadius: 5, 
