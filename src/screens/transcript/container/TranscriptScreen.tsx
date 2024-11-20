@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FlatList, useWindowDimensions, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useAudio } from 'services/hooks';
@@ -16,6 +16,8 @@ export const TranscriptScreen = () => {
 
   const dims = useWindowDimensions();
   const player = useAudio(require("assets/audio/transcript_audio.mp3"));
+
+  const listRef = useRef<FlatList>();
 
   const [interleaved, setInterleaved] = useState<TranscriptEntry[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -42,6 +44,13 @@ export const TranscriptScreen = () => {
 
   }, [player.currentTime])
 
+
+  //scroll to index being played
+  useEffect(() => {
+    if (listRef.current && activeIndex >= 0) {
+      listRef.current?.scrollToIndex({ index: activeIndex });
+    }
+  }, [activeIndex]);
 
 
   //fetch transcript
@@ -114,13 +123,14 @@ export const TranscriptScreen = () => {
         <Header />
 
         <FlatList
+          ref={listRef}
           data={interleaved}
           keyExtractor={(_, index) => index.toString()}
           renderItem={renderItem}
           contentContainerStyle={styles.listContent}
           extraData={player.currentTime}
         />
-        
+
         <ControlPanel
           onTogglePlayback={_onTogglePlayback}
           onNext={_onNext}
