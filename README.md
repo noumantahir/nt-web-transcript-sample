@@ -1,6 +1,6 @@
 # Sample React Native Audio Transcriber App
 
-The app is part of an assessment process and should not be considered a final product.
+The app is part of an assessment process and should not be considered a final product. [**Try Deployed App**](https://brilliant-cocada-ec4b19.netlify.app/)
 
 This is a simple React Native application designed to serve as a basic audio transcriber. The app accepts uses language audio and transcript metadata as inputs, plays the audio, and highlights the corresponding spoken phrases in real-time. The goal is to create an interactive experience where users can listen to the audio while the spoken phrases are visually emphasized on the screen.
 
