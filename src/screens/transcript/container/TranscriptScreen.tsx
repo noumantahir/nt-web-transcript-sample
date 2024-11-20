@@ -24,11 +24,15 @@ export const TranscriptScreen = () => {
     _loadTranscript()
   }, [])
 
+
+  //this hook handles phrase index chnage based on active phrase end time
+  //and current time of player
   useEffect(() => {
 
     const phraseEndingSec = interleaved[activeIndex]?.endTime || -1;
 
-    if (player.currentTime > phraseEndingSec) {
+    //change phrase if player has passed the ending time of current phrase
+    if (player.currentTime >= phraseEndingSec) {
       const nextIndex = activeIndex + 1
       const nextPhrase = interleaved[nextIndex];
       setActiveIndex(nextPhrase ? nextIndex : -1)
@@ -47,9 +51,10 @@ export const TranscriptScreen = () => {
 
   const _onTogglePlayback = () => {
     if (player.isReady) {
-      console.log('toggle playback', player.isReady, player.playing)
       player.toggle();
 
+      //set active index to start if playback was reset
+      //else skip this stop to support play/pause
       if (activeIndex < 0) {
         setActiveIndex(0);
       }
