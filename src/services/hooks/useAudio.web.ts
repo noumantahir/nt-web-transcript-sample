@@ -7,6 +7,7 @@ export const useAudio = (src: string | string[]) => {
     const [isEnded, setIsEnded] = useState(true);
     const [currentTime, setCurrentTime] = useState(0);
 
+    // toggles audio playback state 
     const _toggle = () => {
         setPlaying(!playing);
         if(isEnded){
@@ -14,12 +15,14 @@ export const useAudio = (src: string | string[]) => {
         }
     }
 
+    // controls play and pause when `playing` state changes
     useEffect(() => {
         playing ? audio.play() : audio.pause();
     },
         [playing]
     );
 
+    // set event listeners
     useEffect(() => {
         audio.addEventListener('ended', () => {
             setPlaying(false);
@@ -30,6 +33,7 @@ export const useAudio = (src: string | string[]) => {
          
         });
 
+        //update current time
         audio.addEventListener('timeupdate', () => {
             setCurrentTime(audio.currentTime * 1000);
         })
@@ -41,6 +45,7 @@ export const useAudio = (src: string | string[]) => {
         };
     }, []);
 
+    // Seeks the audio to a specific time
     const _seek = (timeMillis: number) => {
         const timeSec = timeMillis / 1000
         if (timeSec < audio.duration) {

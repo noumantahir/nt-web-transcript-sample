@@ -30,10 +30,10 @@ export const TranscriptScreen = () => {
   //and current time of player
   useEffect(() => {
 
-    const phraseEndingSec = interleaved[activeIndex]?.endTime || -1;
+    const phraseEndingSec = interleaved[activeIndex]?.endTime;
 
     //change phrase if player has passed the ending time of current phrase
-    if (player.currentTime >= phraseEndingSec) {
+    if (phraseEndingSec && player.currentTime >= phraseEndingSec) {
       const nextIndex = activeIndex + 1
       const nextPhrase = interleaved[nextIndex];
       setActiveIndex(nextPhrase ? nextIndex : -1)
