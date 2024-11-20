@@ -6,6 +6,17 @@ The app is part of an assessment process and should not be considered a final pr
 
 This is a simple React Native application designed to serve as a basic audio transcriber. The app accepts uses language audio and transcript metadata as inputs, plays the audio, and highlights the corresponding spoken phrases in real-time. The goal is to create an interactive experience where users can listen to the audio while the spoken phrases are visually emphasized on the screen.
 
+**Features**
+- Auido Play/pause web and native
+- Phrase highlight based on current time
+- Next button seeks to next phrase
+- Prev button playbacks current phrase
+- Prev button seeks to previous phrase if tapped under 700ms
+
+**Extra Features**
+- Phrase item playbacks by tapping on them
+- smooth animations -- `entry phrases`, `entry panel`, `phrase switch`, `play button`
+
 ### Screenshots
 
 <img width="293" alt="Screenshot 2024-11-21 at 00 10 01" src="https://github.com/user-attachments/assets/da2acafe-34d5-42ca-af50-989ced340052">
