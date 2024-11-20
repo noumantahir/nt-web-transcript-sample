@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "theme";
 
 export default StyleSheet.create({
     container: {
@@ -13,13 +14,20 @@ export default StyleSheet.create({
       marginRight: 56
     },
     chatBubble: {
-      backgroundColor: '#f0f0f0',
-      width: '80%',
-      padding: 10,
+      backgroundColor: Colors.backgroundWhite,
+      width: '100%',
+      borderColor:Colors.border,
+      marginTop:6,
+      borderWidth:1,
+      paddingHorizontal: 10,
+      paddingVertical:12,
       borderRadius: 8,
       marginBottom: 8,
     },
     activeBubble:{
-      backgroundColor: '#8794FF33',
+      backgroundColor: Colors.primary,
+    },
+    activeTextStyle:{
+      color:Colors.accent,
     }
   });
