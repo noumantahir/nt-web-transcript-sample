@@ -6,6 +6,12 @@ The app is part of an assessment process and should not be considered a final pr
 
 This is a simple React Native application designed to serve as a basic audio transcriber. The app accepts uses language audio and transcript metadata as inputs, plays the audio, and highlights the corresponding spoken phrases in real-time. The goal is to create an interactive experience where users can listen to the audio while the spoken phrases are visually emphasized on the screen.
 
+Mobile Demo
+https://github.com/user-attachments/assets/dca8d563-cf5a-4cd5-ade2-a91141499030
+
+Web Demo
+https://github.com/user-attachments/assets/963001c0-5aeb-4fc8-85b7-1b1eb1395aff
+
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
