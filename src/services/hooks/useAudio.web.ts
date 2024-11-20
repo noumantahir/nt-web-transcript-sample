@@ -42,9 +42,9 @@ export const useAudio = (src: string | string[]) => {
     }, []);
 
     const _seek = (timeMillis: number) => {
-        const timeSec = timeMillis * 1000
+        const timeSec = timeMillis / 1000
         if (timeSec < audio.duration) {
-            audio.currentTime = timeSec / 100;
+            audio.currentTime = timeSec;
         }
     }
 
