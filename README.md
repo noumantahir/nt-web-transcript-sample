@@ -19,7 +19,7 @@ This is a simple React Native application designed to serve as a basic audio tra
 - smooth animations -- `entry phrases`, `entry panel`, `phrase switch`, `play button`
 
 ### Video Demo (Web|Android|iOS)
-
+Note: Android audio recorded through mic
 https://www.loom.com/share/09e2530114aa42f3b6413f7537289d4c?sid=1afbb1d3-0aea-4e78-89a8-e6b3201a8dd5
 
 
