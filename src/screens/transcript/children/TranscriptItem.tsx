@@ -1,4 +1,4 @@
-import { Platform, Pressable } from 'react-native'
+import { Platform, Pressable, View } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { TranscriptEntry } from 'services/transcript/transcript.types'
 import styles from '../styles/TranscriptItem.styles'
@@ -63,15 +63,16 @@ export const TranscriptItem = ({ data, index, activeIndex, onPress }: Props) => 
 
 
   return (
-    <Animated.View entering={FadeInDown.delay(_animDelay)} style={_containerStyle}>
-      <Text preset={TextPresets.LABEL} style={_textStyle}>{data.speaker}</Text>
+    <Animated.View entering={FadeInDown.delay(_animDelay)}>
+      <View style={_containerStyle}>
+        <Text preset={TextPresets.LABEL} style={_textStyle}>{data.speaker}</Text>
 
-      <Animated.View style={[_bubbleStyle, animatedBubbleStyle]}>
-        <Pressable onPress={_onPress}>
-          <Text preset={TextPresets.BODY} style={_textStyle}>{data.message}</Text>
-        </Pressable>
-      </Animated.View>
-
+        <Animated.View style={[_bubbleStyle, animatedBubbleStyle]}>
+          <Pressable onPress={_onPress}>
+            <Text preset={TextPresets.BODY} style={_textStyle}>{data.message}</Text>
+          </Pressable>
+        </Animated.View>
+      </View>
     </Animated.View >
   )
 }
