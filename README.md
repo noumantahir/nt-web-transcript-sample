@@ -18,22 +18,9 @@ This is a simple React Native application designed to serve as a basic audio tra
 - Scroll to phrase being played if not already on screen
 - smooth animations -- `entry phrases`, `entry panel`, `phrase switch`, `play button`
 
-### Screenshots
+### Video Demo (Web|Android|iOS)
 
-<img width="293" alt="Screenshot 2024-11-21 at 00 10 01" src="https://github.com/user-attachments/assets/da2acafe-34d5-42ca-af50-989ced340052">
-<img width="1280" alt="Screenshot 2024-11-21 at 00 10 53" src="https://github.com/user-attachments/assets/a3861459-0c3d-4a9e-890c-0c0041f0c742">
-
-
-### Video Demo
-
-Mobile Demo
-https://github.com/user-attachments/assets/adfb337f-1ba4-4472-931d-730579744366
-
-
-Web Demo
-https://github.com/user-attachments/assets/7f9bd7a1-5bdb-446a-a599-2cd2d169d996
-
-
+https://www.loom.com/share/09e2530114aa42f3b6413f7537289d4c?sid=1afbb1d3-0aea-4e78-89a8-e6b3201a8dd5
 
 
 # Getting Started
