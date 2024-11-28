@@ -74,11 +74,22 @@ export const TranscriptScreen = () => {
 
   //safely seek to phrase requested
   const _seek = (toIndex: number) => {
-    if (toIndex >= 0 && toIndex < interleaved.length) {
+    if(toIndex < 0){
+      return;
+    }
+
+    //seek as ususal if index under length
+    if(toIndex < interleaved.length){
       const toPhrase = interleaved[toIndex];
       player.seek(toPhrase.startTime);
       setActiveIndex(toIndex);
+      return;
     }
+
+    //mocks play seek to the end
+    player.seek(player.duration - 1);
+    setActiveIndex(-1);
+
   }
 
   //seek to phrase track
