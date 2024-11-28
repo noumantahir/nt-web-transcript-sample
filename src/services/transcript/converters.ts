@@ -22,7 +22,7 @@ export const parseInterleavedData = (rawData: TranscriptMeta) => {
     const { pause, speakers } = rawData;
 
     let result: TranscriptEntry[] = [];
-    let startTime = 0;
+    let elapsedTime = 0;
     let maxPhrases = 0;
 
     //get max number of phrases per speaker
@@ -41,11 +41,9 @@ export const parseInterleavedData = (rawData: TranscriptMeta) => {
             if (phrase) {
 
                 //calcaulate phrase start time based on last ending phrase
-                //skips this step for first phrase, since it always starts at 0
-                if (result.length > 0) {
-                    const previousItem = result[result.length - 1];
-                    startTime = previousItem.endTime + pause;
-                }
+                const startTime = elapsedTime
+                const endTime = startTime + phrase.time;
+                elapsedTime = endTime + pause;
 
                 //convert to porcessable array item and push to returning array
                 result.push({
@@ -53,7 +51,7 @@ export const parseInterleavedData = (rawData: TranscriptMeta) => {
                     message: phrase.words,
                     startTime: startTime,
                     duration: phrase.time,
-                    endTime: startTime + phrase.time,
+                    endTime: endTime,
                 });
             }
         })
