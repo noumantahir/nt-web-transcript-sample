@@ -1,7 +1,8 @@
-import React from 'react';
-import { Alert, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Alert, Easing, View } from 'react-native';
 
 import styles from './ProgressBar.styles';
+import Animated, { LinearTransition, useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 interface Props {
     maxProgress: number;
@@ -10,16 +11,28 @@ interface Props {
 
 export const ProgressBar = ({ progress = 0, maxProgress = 0 }: Props) => {
 
-    const _percent = maxProgress ? Math.ceil((progress / maxProgress) * 100) : 0;
+    const width = useSharedValue(0);
 
-    const _fillStyle = {
-        ...styles.fillBar,
-        width: `${_percent}%`,
-    }
+
+    useEffect(() => {
+        const _precent = maxProgress ? Math.ceil((progress / maxProgress) * 100) : 0;
+        width.value = _precent ? withTiming(_precent, {
+            duration:300,
+            easing:Easing.ease,
+        }) : 0;
+    }, [progress])
+
+
+    const _fillStyle = useAnimatedStyle(() => {
+        return {
+            ...styles.fillBar,
+            width: `${width.value}%`,
+        };
+    });
 
     return (
         <View style={styles.container}>
-            <View style={_fillStyle} />
+            <Animated.View style={_fillStyle} />
         </View>
     );
 };
